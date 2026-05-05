@@ -1,22 +1,65 @@
-Software Quality Evaluation Tool (ISO/IEC 25010 & 25023)
 
-Bu uygulama, yazılım sistemlerinin kalitesini **ISO/IEC 25010** standartlarına göre ölçmek için geliştirilmiştir. Teknik metrikler **ISO/IEC 25023** formülleri kullanılarak analiz edilir.
- Kalite Karakteristikleri
-Proje kapsamında aşağıdaki boyutlar değerlendirilmektedir:
-- Functional Suitability (Fonksiyonel Uygunluk)
-- Reliability (Güvenilirlik)
-- Performance Efficiency (Performans Verimliliği)
-- Maintainability (Bakım Yapılabilirlik)
-- Security (Güvenlik)
+ISO/IEC 15939 Measurement Process Simulator
 
-  Hesaplama Mantığı
-- Higher is Better:** $1 + ((Değer - Min) / (Max - Min)) * 4$
-- Lower is Better:** $5 - ((Değer - Min) / (Max - Min)) * 4$
-- Tüm puanlar 1-5 arasına sabitlenir ve en yakın 0.5'e yuvarlanır.
 
- 📂 Dosya Yapısı
-- `Criterion.java`: Metrik puanlama mantığı.
-- `QualityDimension.java`: Karakteristik puan ortalamaları.
-- `SWSystem.java`: Sistem raporlama ve analiz.
-- `SWSystemData.java`: Sistem verileri (ShopSphere, GlobalBank).
-- `Main.java`: Uygulama giriş noktası.
+STUDENT NAME   : FURKAN AKYOL
+STUDENT ID     : 202428204
+COURSE         : Software Project II
+
+
+
+src/
+ ├── Main.java                  (Entry point)
+ ├── model/
+ │    ├── AppSession.java       (Oturum verileri)
+ │    ├── UserProfile.java      (Kullanıcı profili)
+ │    ├── SWSystem.java         (Yazılım sistemi)
+ │    ├── QualityDimension.java (Kalite boyutu)
+ │    └── Criterion.java        (Metrik/kriter)
+ ├── data/
+ │    └── ScenarioData.java     (Hard-coded senaryo verileri)
+ └── gui/
+      ├── MainFrame.java        (Ana pencere / CardLayout controller)
+      ├── StepIndicator.java    (Üst adım göstergesi)
+      ├── Step1ProfilePanel.java
+      ├── Step2DefinePanel.java
+      ├── Step3PlanPanel.java
+      ├── Step4CollectPanel.java
+      ├── Step5AnalysePanel.java
+      └── RadarChartPanel.java  (BONUS: Radar chart)
+
+
+Windows:
+  cd src
+  javac -d ../out model\*.java data\*.java gui\*.java Main.java
+
+
+  cd out
+  java Main
+
+
+✓ Step 1 — Profile   : Username, School, Session Name + validation
+✓ Step 2 — Define    : Quality Type / Mode / Scenario selection (RadioButton)
+✓ Step 3 — Plan      : Read-only metric table with all dimensions
+✓ Step 4 — Collect   : Measured values + auto score calculation (1–5)
+✓ Step 5 — Analyse   : JProgressBar scores + Gap Analysis
+★ BONUS              : Radar (Spider) Chart via Graphics2D
+
+
+Health Mode:
+  - Scenario A — ClinicSoft  (Security, Reliability, Usability, Performance)
+  - Scenario B — MediTrack   (Functional Suitability, Maintainability, Security, Reliability)
+
+Education Mode:
+  - Scenario C — Team Alpha  (Usability, Performance, Accessibility, Reliability, Func. Suitability)
+  - Scenario D — Team Beta   (Same dimensions, different measured values)
+
+
+- No external libraries used (pure Java SE)
+- Compatible with Java SE 17+
+- Eclipse: File > Import > Existing Projects, set src as source folder
+
+
+ Analyse Results Screen
+
+![Analyse Screen](images/analyse.png)
